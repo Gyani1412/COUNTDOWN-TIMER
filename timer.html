@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Timer Page</title>
+    <link rel="stylesheet" href="timer.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1 class="heading">ADVANCE HAPPY BIRTHDAY</h1>
+        <p class="description">“Your birthday is the first day of another 365-day journey. Be the shining thread in the beautiful tapestry of the world to make this year the best ever. Enjoy the ride.”</p>
+    
+        <div class="timer">
+        <div class="sub_timer">
+            <h1 id="day" class="digit">00</h1>
+            <p class="digit_name">Days</p>
+        </div>
+        <div class="sub_timer">
+            <h1 id="hour" class="digit">00</h1>
+            <p class="digit_name">Hours</p>
+        </div>
+        <div class="sub_timer">
+            <h1 id="min" class="digit">00</h1>
+            <p class="digit_name">Minutes</p>
+        </div>
+        <div class="sub_timer">
+            <h1 id="sec" class="digit">00</h1>
+            <p class="digit_name">Seconds</p>
+          </div>
+       </div>
+    </div>
+    
+
+
+
+    <!--javascript-->
+    <script>
+    var targetMilliSec = new Date("May 12, 2024 12:00:00").getTime(); 
+
+function timer() {
+    var nowMilliSec = new Date().getTime();
+    var remainingSec = Math.floor((targetMilliSec - nowMilliSec) / 1000);
+
+    if (remainingSec <= 0) {
+        document.querySelector("#day").innerHTML = "00";
+        document.querySelector("#hour").innerHTML = "00";
+        document.querySelector("#min").innerHTML = "00";
+        document.querySelector("#sec").innerHTML = "00";
+    
+        alert("Happy Birthday!");
+        clearInterval(timerInterval);
+        return;
+    }
+
+    var days = Math.floor(remainingSec / (3600 * 24));
+    var hours = Math.floor((remainingSec % (3600 * 24)) / 3600);
+    var minutes = Math.floor((remainingSec % 3600) / 60);
+    var seconds = remainingSec % 60;
+
+    document.querySelector("#day").innerHTML = String(days).padStart(2, '0');
+    document.querySelector("#hour").innerHTML = String(hours).padStart(2, '0');
+    document.querySelector("#min").innerHTML = String(minutes).padStart(2, '0');
+    document.querySelector("#sec").innerHTML = String(seconds).padStart(2, '0');
+}
+
+// Call the timer function every second
+var timerInterval = setInterval(timer, 1000);
+
+    </script>
+</body>
+</html>
